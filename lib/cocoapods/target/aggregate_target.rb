@@ -138,6 +138,9 @@ module Pod
       # target that would require a host target
       return false if user_project.nil?
       symbol_types = user_targets.map(&:symbol_type).uniq
+      if symbol_types.count == 0
+        return false
+      end
       unless symbol_types.count == 1
         raise ArgumentError, "Expected single kind of user_target for #{name}. Found #{symbol_types.join(', ')}."
       end
